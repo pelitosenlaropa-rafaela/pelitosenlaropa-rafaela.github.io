@@ -10,196 +10,204 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --amarillo:    #FFD700;
-    --amarillo-os: #F0C000;
-    --naranja:     #FF8C00;
-    --negro:       #1A1A1A;
-    --blanco:      #FFFFFF;
-    --verde:       #2D6A4F;
-    --gris-claro:  #F5F5F5;
-    --gris:        #888888;
+    --amarillo: #FFD700;
+    --naranja: #FF8C00;
+    --negro: #1A1A1A;
+    --blanco: #FFFFFF;
+    --verde: #4A9B8E;
+    --gris-claro: #F5F5F5;
+    --gris: #888888;
   }
 
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--blanco);
     color: var(--negro);
-    line-height: 1.6;
   }
 
-  /* NAV */
-  nav {
+  /* HEADER */
+  header {
     background: var(--negro);
-    padding: 1rem 1.5rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
   }
 
-  .logo {
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .logo-text {
     font-family: 'Fraunces', serif;
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: bold;
     color: var(--amarillo);
-    text-decoration: none;
   }
 
-  .nav-links {
+  nav {
     display: flex;
     gap: 2rem;
-    list-style: none;
+    align-items: center;
   }
 
-  .nav-links a {
+  nav a {
     color: var(--blanco);
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.2s;
+    cursor: pointer;
   }
 
-  .nav-links a:hover {
+  nav a:hover {
     color: var(--amarillo);
   }
 
-  @media (max-width: 600px) {
-    .nav-links { gap: 1rem; font-size: 0.8rem; }
+  @media (max-width: 768px) {
+    nav { flex-wrap: wrap; gap: 0.8rem; }
+    nav a { font-size: 0.8rem; }
   }
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, var(--negro) 0%, #2a2a2a 100%);
-    color: var(--blanco);
-    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, var(--amarillo) 0%, #FFE34D 100%);
+    padding: 3rem 2rem;
     text-align: center;
-  }
-
-  .hero-eyebrow {
-    color: var(--amarillo);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    position: relative;
   }
 
   .hero h1 {
     font-family: 'Fraunces', serif;
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    margin-bottom: 0.8rem;
-    line-height: 1.2;
+    font-size: 2.5rem;
+    color: var(--negro);
+    margin-bottom: 1rem;
   }
-
-  .hero .amarillo { color: var(--amarillo); }
-  .hero .naranja { color: var(--naranja); }
 
   .hero p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 1.5rem auto;
-    color: #ddd;
-    line-height: 1.7;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--amarillo);
+    font-size: 1rem;
     color: var(--negro);
-    padding: 0.9rem 2rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-    margin-top: 1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
   }
 
-  .btn-primary:hover {
-    background: var(--amarillo-os);
-    transform: translateY(-2px);
+  .hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  /* SECCIONES */
-  section {
-    padding: 3.5rem 1.5rem;
+  .btn-hero {
+    background: var(--naranja);
+    color: var(--blanco);
+    padding: 1rem 1.8rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+    min-width: 200px;
+  }
+
+  .btn-hero:hover {
+    background: #FF7A00;
+  }
+
+  /* CONTENIDO */
+  .content-section {
+    display: none;
+    padding: 2rem;
     max-width: 1000px;
     margin: 0 auto;
+    animation: fadeIn 0.3s;
   }
 
-  section h2 {
+  .content-section.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .section-title {
     font-family: 'Fraunces', serif;
     font-size: 2rem;
-    margin-bottom: 0.5rem;
     color: var(--negro);
+    margin-bottom: 0.5rem;
   }
 
   .section-subtitle {
     color: var(--naranja);
     font-weight: 600;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
   }
 
-  /* QUIÉNES SOMOS */
-  #quienes {
-    background: var(--gris-claro);
-  }
-
-  .quienes-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  .quienes-text p {
-    margin-bottom: 1rem;
+  .section-text {
     line-height: 1.8;
-    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #555;
   }
 
-  .quienes-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  .section-text p {
+    margin-bottom: 1rem;
+  }
+
+  /* BOTONES */
+  .btn-group {
+    display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
   }
 
-  .stat {
-    background: var(--blanco);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    border-left: 4px solid var(--amarillo);
+  .btn-secondary {
+    background: var(--verde);
+    color: var(--blanco);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: inline-block;
   }
 
-  .stat-num {
-    font-family: 'Fraunces', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--naranja);
+  .btn-secondary:hover {
+    background: #3d8376;
   }
 
-  .stat-label {
-    font-size: 0.85rem;
-    color: var(--gris);
-    margin-top: 0.3rem;
+  .btn-primary-alt {
+    background: var(--amarillo);
+    color: var(--negro);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: inline-block;
   }
 
-  @media (max-width: 700px) {
-    .quienes-content { grid-template-columns: 1fr; }
+  .btn-primary-alt:hover {
+    background: #FFC700;
   }
 
   /* BOTIQUÍN */
-  #boticuin {
-    background: var(--blanco);
-  }
-
   .filtros {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
     margin-bottom: 2rem;
   }
@@ -208,30 +216,35 @@
     background: var(--gris-claro);
     border: 2px solid var(--gris-claro);
     color: var(--negro);
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.2s;
   }
 
-  .filtro-btn:hover,
   .filtro-btn.activo {
     background: var(--amarillo);
     border-color: var(--amarillo);
     color: var(--negro);
   }
 
+  .filtro-btn:hover {
+    background: var(--amarillo);
+    border-color: var(--amarillo);
+  }
+
   .medicinas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.2rem;
+    margin-bottom: 2rem;
   }
 
   .medicina-card {
     background: var(--blanco);
     border: 2px solid #eee;
-    border-radius: 0.5rem;
+    border-radius: 12px;
     padding: 1.2rem;
     transition: all 0.2s;
   }
@@ -245,151 +258,125 @@
     font-weight: 600;
     font-size: 1rem;
     color: var(--negro);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
   }
 
   .medicina-meta {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.6rem;
     flex-wrap: wrap;
-    margin-bottom: 0.8rem;
   }
 
   .badge {
-    background: var(--gris-claro);
-    color: var(--negro);
-    padding: 0.3rem 0.7rem;
-    border-radius: 0.3rem;
     font-size: 0.75rem;
-    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
   }
 
-  .badge.cantidad {
+  .badge-cantidad {
     background: #FFF8DC;
     color: var(--naranja);
   }
 
-  .badge.vencimiento {
+  .badge-vencimiento {
     background: #FFE4E1;
     color: #C0392B;
   }
 
-  .medicina-contacto {
-    font-size: 0.85rem;
-    color: var(--gris);
-    border-top: 1px solid #eee;
-    padding-top: 0.8rem;
-    margin-top: 0.8rem;
-  }
-
-  .medicina-contacto strong {
-    color: var(--verde);
-  }
-
-  /* CÓMO AYUDAR */
-  #ayudar {
-    background: var(--gris-claro);
-  }
-
-  .ayudar-grid {
+  /* SUMATE */
+  .sumarte-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin-top: 1.5rem;
+    margin-bottom: 2rem;
   }
 
-  .ayudar-card {
-    background: var(--blanco);
+  .sumarte-card {
+    background: var(--gris-claro);
     padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    border-top: 4px solid var(--amarillo);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
   }
 
-  .ayudar-card h3 {
-    color: var(--negro);
-    margin-bottom: 0.8rem;
+  .sumarte-card:hover {
+    background: #e8e8e8;
+    transform: translateY(-2px);
+  }
+
+  .sumarte-card h3 {
+    color: var(--verde);
+    margin-bottom: 0.5rem;
     font-size: 1.1rem;
   }
 
-  .ayudar-card p {
-    color: var(--gris);
-    line-height: 1.7;
-    font-size: 0.95rem;
+  .sumarte-card.expandido {
+    background: var(--amarillo);
   }
 
-  /* DONAR FORMULARIO */
-  #donar {
-    background: var(--negro);
-    color: var(--blanco);
-    text-align: center;
-  }
-
-  #donar h2 {
-    color: var(--amarillo);
-  }
-
-  #donar p {
-    color: #ddd;
-    max-width: 600px;
-    margin: 1rem auto;
-  }
-
-  .donar-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-
-  .btn-secondary {
-    background: var(--naranja);
-    color: var(--blanco);
-    padding: 0.9rem 2rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-
-  .btn-secondary:hover {
-    background: #FF7A00;
-  }
-
-  /* CONTACTO */
-  #contacto {
-    background: var(--gris-claro);
-    text-align: center;
-  }
-
-  .contacto-links {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
-  }
-
-  .contacto-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
+  .sumarte-card.expandido h3 {
     color: var(--negro);
   }
 
-  .contacto-link:hover {
+  .sumarte-content {
+    display: none;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .sumarte-card.expandido .sumarte-content {
+    display: block;
+    color: var(--negro);
+  }
+
+  /* HACETE SOCIO */
+  .socio-opciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .socio-card {
+    background: var(--gris-claro);
+    border: 2px solid var(--amarillo);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .socio-card h3 {
     color: var(--naranja);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
   }
 
-  .contacto-icon {
-    font-size: 2rem;
+  .socio-card a {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--negro);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-top: 0.8rem;
   }
 
-  .contacto-label {
-    font-weight: 600;
+  .socio-card a:hover {
+    background: #FFC700;
+  }
+
+  /* NOTA */
+  .note {
+    background: #FFF3CD;
+    border-left: 4px solid var(--naranja);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
     font-size: 0.9rem;
   }
 
@@ -399,241 +386,347 @@
     color: var(--blanco);
     text-align: center;
     padding: 2rem;
-    font-size: 0.9rem;
-  }
-
-  footer p {
-    margin-bottom: 0.5rem;
+    margin-top: 3rem;
   }
 
   footer a {
     color: var(--amarillo);
     text-decoration: none;
+    margin: 0 1rem;
   }
 
   footer a:hover {
     text-decoration: underline;
   }
 
-  /* RESPONSIVE */
-  @media (max-width: 600px) {
-    section { padding: 2rem 1rem; }
-    section h2 { font-size: 1.5rem; }
-    .donar-buttons { flex-direction: column; }
-    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+  .footer-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-icons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .section-title { font-size: 1.5rem; }
+    .medicinas-grid { grid-template-columns: 1fr; }
+    .sumarte-grid { grid-template-columns: 1fr; }
+    .socio-opciones { grid-template-columns: 1fr 1fr; }
+    .hero-buttons { flex-direction: column; }
+    .btn-hero { min-width: 100%; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="logo">🐾 Pelitos en la Ropa</a>
-  <ul class="nav-links">
-    <li><a href="#quienes">Quiénes somos</a></li>
-    <li><a href="#boticuin">Botiquín</a></li>
-    <li><a href="#ayudar">Cómo ayudar</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
-</nav>
+<!-- HEADER -->
+<header>
+  <div class="logo-container">
+    <div style="font-size: 2rem;">🐾</div>
+    <div class="logo-text">Pelitos en la Ropa</div>
+  </div>
+
+  <nav>
+    <a onclick="mostrarSeccion('que-es')">Qué es Pelitos</a>
+    <a onclick="mostrarSeccion('boticuin')">Botiquín</a>
+    <a onclick="mostrarSeccion('socio')">Hacete Socio</a>
+    <a onclick="mostrarSeccion('sumarte')">Súmate</a>
+    <a onclick="mostrarSeccion('contacto')">Contacto</a>
+  </nav>
+</header>
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">Proyecto comunitario sin fines de lucro</p>
-  <h1>Ayudamos a los <span class="amarillo">animales</span> de <span class="naranja">Rafaela</span></h1>
-  <p>Mediante beneficios, ventas, rifas y la comunidad, rescatamos y cuidamos perros y gatos en situación de calle.</p>
-  <a href="#donar" class="btn-primary">¿Querés ayudar?</a>
+  <h1>Bienvenidos al #TeamPelitos</h1>
+  <p>Rescatamos bichis callejeros, ¿te sumás a salvarlos? Te cuento cómo ser parte.</p>
+  
+  <div class="hero-buttons">
+    <button class="btn-hero" onclick="mostrarSeccion('perdidos')">🔍 Perdidos y Encontrados</button>
+    <button class="btn-hero" onclick="mostrarSeccion('boticuin')">💊 Botiquín Comunitario</button>
+  </div>
 </section>
 
-<!-- QUIÉNES SOMOS -->
-<section id="quienes">
-  <h2>Quiénes somos</h2>
-  <p class="section-subtitle">La historia de Pelitos en la Ropa</p>
-
-  <div class="quienes-content">
-    <div class="quienes-text">
-      <p>
-        <strong>Pelitos en la Ropa</strong> nace en 2023 como respuesta a una necesidad urgente en Rafaela: 
-        muchos animales callejeros no tenían acceso a medicamentos básicos.
-      </p>
-      <p>
-        Desde entonces, nos dedican a rescatar, cuidar y encontrar hogares para perros y gatos en situación de calle. 
-        Hacemos beneficios, ventas, rifas y ferias americanas para sostener nuestro trabajo.
-      </p>
-      <p>
-        En 2023 creamos el <strong>primer botiquín comunitario de Rafaela</strong>, 
-        un espacio donde la comunidad dona medicamentos y quien los necesita puede acceder sin costo.
-      </p>
-    </div>
-
-    <div class="quienes-stats">
-      <div class="stat">
-        <div class="stat-num">50+</div>
-        <div class="stat-label">Animales rescatados</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">34</div>
-        <div class="stat-label">Medicamentos disponibles</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">7</div>
-        <div class="stat-label">Familias ayudadas</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Comunitario y gratuito</div>
-      </div>
-    </div>
+<!-- QUÉ ES PELITOS -->
+<section id="que-es" class="content-section active">
+  <h2 class="section-title">Qué es Pelitos</h2>
+  <div class="section-text">
+    <p><strong>Pelitos en la Ropa</strong> es la creación más hermosa y generosa que logré en mi vida. Pelitos es el puente entre quienes quieren ayudar y no saben cómo o cuándo y quienes necesitan ser salvados.</p>
+    
+    <p>Fuera del mundo del rescate soy muchas cosas (estudiante, hija, hermana, amiga, empleada, novia, mamá de un michi)... y acá, en Pelitos, considero que soy mi mejor versión.</p>
+    
+    <p>De chiquita siempre quise cambiar el mundo, y sé que con este proyecto hermoso, logramos cambiarle el mundo a cada animalito que ayudamos.</p>
+    
+    <p style="margin-top: 1.5rem; font-style: italic;">Gracias por confiar en mí y acompañarme en esta aventura. 💛</p>
+    <p>Vir Malagueño</p>
+  </div>
+  <div class="btn-group">
+    <a href="https://www.instagram.com/pelitosenlaropa.rafaela?igsh=MTg2N2h5MTRna2xlOA==" target="_blank" class="btn-secondary">Seguinos en Instagram</a>
   </div>
 </section>
 
 <!-- BOTIQUÍN -->
-<section id="boticuin">
-  <h2>Botiquín Comunitario</h2>
+<section id="boticuin" class="content-section">
+  <h2 class="section-title">Botiquín Comunitario</h2>
   <p class="section-subtitle">Medicamentos disponibles para buscar</p>
+  
+  <div class="section-text">
+    <p>Nació en 2023 cuando vi 2 situaciones en simultáneo: yo tirando medicamentos casi sin uso porque se me vencieron y una rescatista pidiendo donaciones para comprar una tableta de diez comprimidos cuando solo necesitaba dos. Así nació y desde el día 1 no solo ayudó a muchas familias sino que siempre está explotado de donaciones.</p>
+  </div>
 
   <div class="filtros">
-    <button class="filtro-btn activo">Todo</button>
-    <button class="filtro-btn">Pastillas</button>
-    <button class="filtro-btn">Gotitas</button>
-    <button class="filtro-btn">Jarabes</button>
-    <button class="filtro-btn">Accesorios</button>
+    <button class="filtro-btn activo" onclick="filtrarMedicinas('todo', event)">Todo</button>
+    <button class="filtro-btn" onclick="filtrarMedicinas('cremas', event)">Cremas</button>
+    <button class="filtro-btn" onclick="filtrarMedicinas('gotas', event)">Gotas</button>
+    <button class="filtro-btn" onclick="filtrarMedicinas('jabon', event)">Jabón Líquido</button>
+    <button class="filtro-btn" onclick="filtrarMedicinas('jarabes', event)">Jarabes</button>
+    <button class="filtro-btn" onclick="filtrarMedicinas('pastillas', event)">Pastillas</button>
   </div>
 
-  <div class="medicinas-grid">
-    <div class="medicina-card">
-      <div class="medicina-nombre">Azitromicina 500mg</div>
-      <div class="medicina-meta">
-        <span class="badge cantidad">3 unidades</span>
-        <span class="badge vencimiento">Vence 10/26</span>
-      </div>
-      <div class="medicina-contacto">📲 <strong>Pelitos en la Ropa</strong></div>
-    </div>
+  <div class="medicinas-grid" id="medicinas-grid">
+    <!-- Se genera con JS -->
+  </div>
+</section>
 
-    <div class="medicina-card">
-      <div class="medicina-nombre">Cefalexina 500mg</div>
-      <div class="medicina-meta">
-        <span class="badge cantidad">8 unidades</span>
-        <span class="badge vencimiento">Vence 10/26</span>
-      </div>
-      <div class="medicina-contacto">📲 <strong>Pelitos en la Ropa</strong></div>
-    </div>
+<!-- PERDIDOS Y ENCONTRADOS -->
+<section id="perdidos" class="content-section">
+  <h2 class="section-title">Perdidos y Encontrados</h2>
+  <p class="section-subtitle">Ayudamos a reunir a animales con sus familias</p>
+  
+  <div class="section-text">
+    <p>En 2024 creé el grupo de wpp para concentrar todas las búsquedas porque en FB o IG sentía que se dispersaba y no llegaba a tanta gente. Y considero que wpp es lo más rápido y práctico para comunicarse.</p>
+    
+    <p>En 2026 creé un generador de flyers de búsquedas por dos razones: hay gente que le es difícil armar publicaciones y notaba que generalmente faltaba información importante que podría ser de gran ayuda.</p>
+  </div>
 
-    <div class="medicina-card">
-      <div class="medicina-nombre">Ciclosporina 2%</div>
-      <div class="medicina-meta">
-        <span class="badge cantidad">disponible</span>
-      </div>
-      <div class="medicina-contacto">📲 <strong>Pelitos en la Ropa</strong></div>
-    </div>
+  <div class="note">
+    💡 Podés hacer dos cosas: generar un flyer rápidamente o unirte al grupo de wpp para compartir y recibir información de animales perdidos y encontrados.
+  </div>
 
-    <div class="medicina-card">
-      <div class="medicina-nombre">Meprednisona 8mg</div>
-      <div class="medicina-meta">
-        <span class="badge cantidad">40 unidades</span>
-        <span class="badge vencimiento">Vence 10/27</span>
-      </div>
-      <div class="medicina-contacto">📲 <strong>Pelitos en la Ropa</strong></div>
-    </div>
+  <div class="btn-group">
+    <a href="https://bit.ly/perdidosyencontrados-pelitos" target="_blank" class="btn-secondary">Generar flyer</a>
+    <a href="https://chat.whatsapp.com/LKHkywZLf0FKKhI63CFRO5" target="_blank" class="btn-primary-alt">Grupo WhatsApp</a>
+  </div>
+</section>
 
-    <div class="medicina-card">
-      <div class="medicina-nombre">Metronidazol 500mg</div>
-      <div class="medicina-meta">
-        <span class="badge cantidad">26 unidades</span>
-        <span class="badge vencimiento">Vence 10/27</span>
-      </div>
-      <div class="medicina-contacto">📲 <strong>Pelitos en la Ropa</strong></div>
-    </div>
+<!-- HACETE SOCIO -->
+<section id="socio" class="content-section">
+  <h2 class="section-title">Hacete Socio</h2>
+  <p class="section-subtitle">Ayuda mensual para los animales</p>
+  
+  <div class="section-text">
+    <p>Activá la opción con la que te sientas cómodo y todos los meses se te va a debitar ese monto. Todo aportes sostiene los rescates y cuidados de los bichis.</p>
+  </div>
 
-    <div class="medicina-card">
-      <div class="medicina-nombre">Pimoden 2.5mg</div>
-      <div class="medicina-meta">
-        <span class="badge cantidad">83 unidades</span>
-        <span class="badge vencimiento">Vence 12/26</span>
-      </div>
-      <div class="medicina-contacto">📲 <strong>Pelitos en la Ropa</strong></div>
+  <div class="socio-opciones">
+    <div class="socio-card">
+      <h3>$500</h3>
+      <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 0.5rem;">Por mes</p>
+      <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=97f0f43f82434f75a678683b6a84ae9a" target="_blank">Activar</a>
+    </div>
+    <div class="socio-card">
+      <h3>$1.000</h3>
+      <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 0.5rem;">Por mes</p>
+      <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=4a2c5d8b62594058857d9d57f92b748f" target="_blank">Activar</a>
+    </div>
+    <div class="socio-card">
+      <h3>$2.000</h3>
+      <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 0.5rem;">Por mes</p>
+      <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=dbdc3e959249473c8fa762e3c3c067ad" target="_blank">Activar</a>
+    </div>
+    <div class="socio-card">
+      <h3>$2.500</h3>
+      <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 0.5rem;">Por mes</p>
+      <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=58ccae957c7c418dad8170edc2e45879" target="_blank">Activar</a>
+    </div>
+    <div class="socio-card">
+      <h3>$5.000</h3>
+      <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 0.5rem;">Por mes</p>
+      <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=b08e5a78996b49d8a546b441a905ab5c" target="_blank">Activar</a>
+    </div>
+    <div class="socio-card">
+      <h3>$10.000</h3>
+      <p style="font-size: 0.85rem; color: var(--gris); margin-bottom: 0.5rem;">Por mes</p>
+      <a href="https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=35bb22d631f943c0865c090acaf61bde" target="_blank">Activar</a>
     </div>
   </div>
 </section>
 
-<!-- CÓMO AYUDAR -->
-<section id="ayudar">
-  <h2>¿Cómo podés ayudar?</h2>
-  <p class="section-subtitle">Hay muchas formas de sumarte</p>
-
-  <div class="ayudar-grid">
-    <div class="ayudar-card">
-      <h3>💊 Donar medicamentos</h3>
-      <p>Si tenés medicamentos de sobra o vencidos que sirven, sumá información al botiquín comunitario. 
-      Otros pueden necesitarlo.</p>
+<!-- SUMATE -->
+<section id="sumarte" class="content-section">
+  <h2 class="section-title">Sumate</h2>
+  <p class="section-subtitle">Hay muchas formas de ayudar</p>
+  
+  <div class="sumarte-grid">
+    <div class="sumarte-card" onclick="toggleSumarte(this)">
+      <h3>📢 Difundí</h3>
+      <div class="sumarte-content">Es gratis y es lo que más nos ayuda porque expande la búsqueda, la venta, el pedido de ayuda. Quizás vos ya ayudaste a otro caso, quién dice que un seguidor tuyo no ayude al nuestro.</div>
     </div>
 
-    <div class="ayudar-card">
-      <h3>🎉 Beneficios y rifas</h3>
-      <p>Participá en nuestras jornadas de rifas y beneficios. Toda la recaudación va directo al cuidado de los animales.</p>
+    <div class="sumarte-card" onclick="toggleSumarte(this)">
+      <h3>🚗 Voluntariado</h3>
+      <div class="sumarte-content">Podés ayudar con lo que podés y tenés. Podés hacer algún mandado en moto o podés hacer traslado en auto, nos ahorras taxi de mascota.</div>
     </div>
 
-    <div class="ayudar-card">
-      <h3>🛍️ Feria americana</h3>
-      <p>Vení a nuestras ferias con ropa, libros y artículos. Todo el dinero lo usamos para rescates y veterinaria.</p>
+    <div class="sumarte-card" onclick="toggleSumarte(this)">
+      <h3>💊 Medicamentos</h3>
+      <div class="sumarte-content">Podés donar sobrantes de medicamentos para el botiquín comunitario.</div>
     </div>
 
-    <div class="ayudar-card">
-      <h3>🏠 Adopción responsable</h3>
-      <p>¿Buscás un compañero? Conocé los perros y gatos que tenemos en adopción. Son increíbles.</p>
+    <div class="sumarte-card" onclick="toggleSumarte(this)">
+      <h3>📚 Libros y ropa</h3>
+      <div class="sumarte-content">Podés donar libros y ropa en buen estado. Nos ayudás a sumar productos en la librería solidaria y en nuestra feria americana.</div>
     </div>
 
-    <div class="ayudar-card">
-      <h3>💰 Donaciones</h3>
-      <p>Podés hacer un aporte puntual o convertirte en colaborador mensual. Cada peso cuenta.</p>
+    <div class="sumarte-card" onclick="toggleSumarte(this)">
+      <h3>🥫 Latitas</h3>
+      <div class="sumarte-content">Limpias y aplastadas. Se junta y se venden para pagar guarderías.</div>
     </div>
 
-    <div class="ayudar-card">
-      <h3>📢 Compartí la voz</h3>
-      <p>Contale a otros sobre nuestro trabajo. El boca a boca es nuestra mejor herramienta.</p>
+    <div class="sumarte-card" onclick="toggleSumarte(this)">
+      <h3>🎰 Rifas</h3>
+      <div class="sumarte-content">¿Tenés productos de tu emprendimiento para donar? Nos ayudás a sumar premios para las rifas que organizamos. Y que nos compren numeritos, siempre siempre siempre los hacemos accesibles.</div>
     </div>
-  </div>
-</section>
 
-<!-- DONAR -->
-<section id="donar">
-  <h2>¿Tenés medicamentos para donar?</h2>
-  <p>Completá el formulario y tu donación aparecerá en el botiquín comunitario. 
-  La gente se contactará con vos para buscar lo que necesita.</p>
+    <div class="sumarte-card" onclick="toggleSumarte(this)">
+      <h3>🏡 Tránsitos</h3>
+      <div class="sumarte-content">¿No estás decidido a adoptar, pero querés intentar o aproximarte a la experiencia? Podés transitar.</div>
+    </div>
 
-  <div class="donar-buttons">
-    <a href="#" class="btn-primary" style="background: var(--amarillo); color: var(--negro);">Completar formulario de donación</a>
-    <a href="https://www.instagram.com/pelitosenlaropa.rafaela" target="_blank" class="btn-secondary">Seguinos en Instagram</a>
+    <div class="sumarte-card" onclick="toggleSumarte(this)">
+      <h3>🏠 Adopciones</h3>
+      <div class="sumarte-content">Obviamente, también necesitamos adopciones, para poder culminar el círculo de los animales rescatados.</div>
+    </div>
   </div>
 </section>
 
 <!-- CONTACTO -->
-<section id="contacto">
-  <h2>Contacto</h2>
-  <p class="section-subtitle">Escribinos, estamos acá</p>
-
-  <div class="contacto-links">
-    <a href="https://www.instagram.com/pelitosenlaropa.rafaela" target="_blank" class="contacto-link">
-      <span class="contacto-icon">📱</span>
-      <span class="contacto-label">@pelitosenlaropa.rafaela</span>
-    </a>
-    <a href="https://wa.me/5493492903019" target="_blank" class="contacto-link">
-      <span class="contacto-icon">💬</span>
-      <span class="contacto-label">WhatsApp</span>
-    </a>
-    <a href="mailto:pelitosenlaropa@gmail.com" class="contacto-link">
-      <span class="contacto-icon">✉️</span>
-      <span class="contacto-label">Email</span>
-    </a>
+<section id="contacto" class="content-section">
+  <h2 class="section-title">Contacto</h2>
+  <p class="section-subtitle">Seguinos y uníte a la comunidad</p>
+  
+  <div class="btn-group" style="justify-content: center;">
+    <a href="https://www.instagram.com/pelitosenlaropa.rafaela?igsh=MTg2N2h5MTRna2xlOA==" target="_blank" class="btn-secondary">📱 Instagram</a>
+    <a href="https://www.facebook.com/Pelitos-en-la-ropa-Rafaela" target="_blank" class="btn-secondary">👥 Facebook</a>
+    <a href="https://chat.whatsapp.com/LKHkywZLf0FKKhI63CFRO5" target="_blank" class="btn-primary-alt">💬 WhatsApp</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <p>🐾 <strong>Pelitos en la Ropa</strong> — Rafaela, Santa Fe</p>
-  <p>Proyecto comunitario sin fines de lucro</p>
-  <p style="margin-top: 1rem; font-size: 0.8rem;">© 2024 • Hecho con ❤️ por la comunidad</p>
+  <p style="margin-top: 0.5rem;">Proyecto sin fines de lucro • Para la comunidad</p>
 </footer>
+
+<script>
+  // Base de medicamentos actualizada
+  const medicamentos = [
+    // CREMAS
+    { nombre: 'Vaselina sólida pura', cantidad: '1', vencimiento: 'Vence 12/27', tipo: 'cremas' },
+    
+    // GOTAS
+    { nombre: 'Ciprovet', cantidad: '1', vencimiento: 'Vence 11/27', tipo: 'gotas' },
+    { nombre: 'Colirio', cantidad: '1', vencimiento: 'Vence 09/26', tipo: 'gotas' },
+    { nombre: 'Hialurato de sodio 0,4%', cantidad: '1', vencimiento: 'Vence 09/26', tipo: 'gotas' },
+    { nombre: 'Meloxivet', cantidad: '1', vencimiento: 'Vence 02/28', tipo: 'gotas' },
+    { nombre: 'Proteliv', cantidad: '3', vencimiento: 'Vence 08/26 y 04/27', tipo: 'gotas' },
+    { nombre: 'Torasemida 0,6%', cantidad: '1', vencimiento: 'Vence 09/26', tipo: 'gotas' },
+    
+    // JABÓN LÍQUIDO
+    { nombre: 'Pervinox', cantidad: '1', vencimiento: 'Vence 01/27', tipo: 'jabon' },
+    
+    // JARABES
+    { nombre: 'Amoxicilina + Ácido clavulánico', cantidad: '1', vencimiento: 'Vence 04/27', tipo: 'jarabes' },
+    { nombre: 'Sucralmax', cantidad: '3', vencimiento: 'Vence 04, 11/26 - 06/27', tipo: 'jarabes' },
+    { nombre: 'Trihepat', cantidad: '1', vencimiento: 'Vence 11/26', tipo: 'jarabes' },
+    
+    // PASTILLAS
+    { nombre: 'Amiodarona', cantidad: '20', vencimiento: 'Vence 04/29', tipo: 'pastillas' },
+    { nombre: 'Azitromicina 500 mg', cantidad: '3', vencimiento: 'Vence 10/26', tipo: 'pastillas' },
+    { nombre: 'Bromuro de Potasio 300 mg', cantidad: '9', vencimiento: 'Vence 11/26', tipo: 'pastillas' },
+    { nombre: 'Cardial B 2,5 mg', cantidad: '6', vencimiento: 'Vence 01/27', tipo: 'pastillas' },
+    { nombre: 'Ciclofosfamida 50 mg', cantidad: '23', vencimiento: 'Vence 10/26', tipo: 'pastillas' },
+    { nombre: 'Ciprofloxacina 500 mg', cantidad: '4', vencimiento: 'Vence 07/27', tipo: 'pastillas' },
+    { nombre: 'Clindamicin 220 mg', cantidad: '2', vencimiento: 'Vence 03/28', tipo: 'pastillas' },
+    { nombre: 'Clindamicina 300 mg', cantidad: '8', vencimiento: 'Vence 06/27', tipo: 'pastillas' },
+    { nombre: 'Cisticalm', cantidad: '2', vencimiento: 'Vence 05/27', tipo: 'pastillas' },
+    { nombre: 'Colotrin Palatable', cantidad: '14', vencimiento: 'Vence 03/27', tipo: 'pastillas' },
+    { nombre: 'Davitan-C Mineral', cantidad: '19', vencimiento: 'Vence 04/27', tipo: 'pastillas' },
+    { nombre: 'Davitan-C Vitaminas', cantidad: '19', vencimiento: 'Vence 04/27', tipo: 'pastillas' },
+    { nombre: 'Enrofloxacina 150', cantidad: '1', vencimiento: 'Vence 09/27', tipo: 'pastillas' },
+    { nombre: 'Episol', cantidad: '3', vencimiento: 'Vence 10/28', tipo: 'pastillas' },
+    { nombre: 'Furosemida 40 mg', cantidad: '25', vencimiento: 'Vence 08, 12/26', tipo: 'pastillas' },
+    { nombre: 'Lanoxin', cantidad: '39', vencimiento: 'Vence 03/29', tipo: 'pastillas' },
+    { nombre: 'Levetiracetam 500 mg', cantidad: '28', vencimiento: 'Vence 11/26', tipo: 'pastillas' },
+    { nombre: 'Luar G', cantidad: '5', vencimiento: 'Vence 09/26', tipo: 'pastillas' },
+    { nombre: 'Meprednisona 8 mg', cantidad: '40', vencimiento: 'Vence 10/27', tipo: 'pastillas' },
+    { nombre: 'Metronidazol 500 mg', cantidad: '19', vencimiento: 'Vence 09/26 y 10/27', tipo: 'pastillas' },
+    { nombre: 'Novalgina 500 mg', cantidad: '8', vencimiento: 'Vence 09/27', tipo: 'pastillas' },
+    { nombre: 'Oncovet', cantidad: '3', vencimiento: 'Vence 09/26', tipo: 'pastillas' },
+    { nombre: 'Pimoden 10 mg', cantidad: '4', vencimiento: 'Vence 10/26', tipo: 'pastillas' },
+    { nombre: 'Pimoden 5 mg', cantidad: '36', vencimiento: 'Vence 09, 12/26, 03, 09/27', tipo: 'pastillas' },
+    { nombre: 'Prednisolona 10 mg', cantidad: '6', vencimiento: 'Vence 05/28', tipo: 'pastillas' },
+    { nombre: 'Prednisolona 20 mg', cantidad: '21', vencimiento: 'Vence 05/27 a 10/28', tipo: 'pastillas' },
+    { nombre: 'Prednisona 20 mg', cantidad: '14', vencimiento: 'Vence 08/27', tipo: 'pastillas' },
+    { nombre: 'Previcox', cantidad: '2', vencimiento: 'Vence 09/28', tipo: 'pastillas' },
+    { nombre: 'PYO Derm Plus 1000', cantidad: '2', vencimiento: 'Vence 06/27', tipo: 'pastillas' },
+    { nombre: 'PYO Derm Plus 500', cantidad: '12', vencimiento: 'Vence 07/26 y 11/27', tipo: 'pastillas' },
+    { nombre: 'Sotalol clorhidrato 80 mg', cantidad: '10', vencimiento: 'Vence 06/28', tipo: 'pastillas' },
+    { nombre: 'T4', cantidad: '10', vencimiento: 'Vence 03/28', tipo: 'pastillas' },
+    { nombre: 'T4 "F"', cantidad: '29', vencimiento: 'Vence 02/28', tipo: 'pastillas' },
+    { nombre: 'UrsoMarina', cantidad: '1', vencimiento: 'Vence 03/27', tipo: 'pastillas' },
+  ];
+
+  let filtroActual = 'todo';
+
+  function mostrarSeccion(id) {
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    const seccion = document.getElementById(id);
+    if (seccion) {
+      seccion.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function filtrarMedicinas(tipo, event) {
+    filtroActual = tipo;
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+    event.target.classList.add('activo');
+    renderizarMedicinas();
+  }
+
+  function renderizarMedicinas() {
+    const grid = document.getElementById('medicinas-grid');
+    grid.innerHTML = '';
+    
+    const filtrados = filtroActual === 'todo' ? medicamentos : medicamentos.filter(m => m.tipo === filtroActual);
+    
+    filtrados.forEach(med => {
+      const card = document.createElement('div');
+      card.className = 'medicina-card';
+      card.innerHTML = `
+        <div class="medicina-nombre">${med.nombre}</div>
+        <div class="medicina-meta">
+          <span class="badge badge-cantidad">${med.cantidad} unidad${med.cantidad !== '1' ? 'es' : ''}</span>
+          ${med.vencimiento ? `<span class="badge badge-vencimiento">${med.vencimiento}</span>` : ''}
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function toggleSumarte(element) {
+    element.classList.toggle('expandido');
+  }
+
+  // Inicializar
+  renderizarMedicinas();
+</script>
 
 </body>
 </html>
